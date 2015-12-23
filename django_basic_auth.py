@@ -67,7 +67,7 @@ def logged_in_or_basicauth(realm = ""):
 
     Use is simple:
 
-    @logged_in_or_basicauth
+    @logged_in_or_basicauth()
     def your_view:
         ...
 
