@@ -22,3 +22,37 @@ Apache
 Add this to your apache config to tell apache to pass the Authorication Headers to your application:
 
   WSGIPassAuthorization On
+
+Django
+-------
+
+Function Views
+################
+
+.. code::
+
+  @logged_in_or_basicauth()
+  def view(request):
+      return 'Hello World.'
+
+Class based Views
+##################
+
+Django 1.8
+
+.. code::
+
+  class View(TemplateView):
+      template_name = 'hello.html'
+
+      @method_decorator(logged_in_or_basicauth())
+      def dispatch(self, *args, **kwargs):
+          return super(View, self).dispatch(*args, *kwargs)
+
+Django 1.9: method_decorator now works on classes: 
+
+.. code::
+
+  @method_decorator(logged_in_or_basicauth(), name='dispatch')
+  class View(TemplateView):
+      template_name = 'hello.html'
