@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import base64
 
 from django.http import HttpResponse
