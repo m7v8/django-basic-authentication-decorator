@@ -77,7 +77,7 @@ def logged_in_or_basicauth(realm=""):
             return view_or_basicauth(
                     func,
                     request,
-                    lambda u: u.is_authenticated(),
+                    lambda u: u.is_authenticated,
                     realm,
                     *args,
                     **kwargs)
