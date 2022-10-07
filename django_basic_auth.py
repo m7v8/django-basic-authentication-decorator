@@ -1,5 +1,6 @@
 import base64
 
+from django import VERSION
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
@@ -77,7 +78,9 @@ def logged_in_or_basicauth(realm = ""):
     def view_decorator(func):
         def wrapper(request, *args, **kwargs):
             return view_or_basicauth(func, request,
-                                     lambda u: u.is_authenticated(),
+                                     (lambda u: u.is_authenticated())
+                                        if VERSION[0] < 2
+                                        else (lambda u:u.is_authenticated),
                                      realm, *args, **kwargs)
         return wrapper
     return view_decorator
